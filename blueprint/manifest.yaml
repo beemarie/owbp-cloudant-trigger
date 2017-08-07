@@ -27,6 +27,13 @@ package:
                 username: $CLOUDANT_USERNAME
                 password: $CLOUDANT_PASSWORD
                 host: $CLOUDANT_HOSTNAME
+        openwhisk-messagehub:
+          location: /whisk.system/messaging
+          inputs:
+            kafka_brokers_sasl: $KAFKA_BROKERS
+            user: $MESSAGEHUB_USER
+            password: $MESSAGEHUB_PASS
+            kafka_admin_url: $KAFKA_ADMIN_URL
     triggers:
         # Trigger named "data-inserted-trigger"
         # Creating trigger to fire events when data is inserted into database
@@ -34,10 +41,19 @@ package:
             source: openwhisk-cloudant/changes
             inputs:
                 dbname: $CLOUDANT_DATABASE
-        data-inserted-trigger2:
+        data-inserted-trigger:
             source: openwhisk-cloudant/changes
             inputs:
                 dbname: $CLOUDANT_DATABASE
+        message-received-trigger:
+          source: /whisk.system/messaging/messageHubFeed
+          inputs:
+            kafka_brokers_sasl: $KAFKA_BROKERS
+            user: $MESSAGEHUB_USER
+            password: $MESSAGEHUB_PASS
+            isJSONData: true
+            topic: $KAFKA_TOPIC
+            kafka_admin_url: $KAFKA_ADMIN_URL
     actions:
         # Action named "process-change"
         # Creating action that is printing data which is written to the database
