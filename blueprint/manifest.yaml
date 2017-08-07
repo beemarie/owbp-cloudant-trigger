@@ -41,7 +41,7 @@ package:
             source: openwhisk-cloudant/changes
             inputs:
                 dbname: $CLOUDANT_DATABASE
-        data-inserted-trigger:
+        data-inserted-trigger2:
             source: openwhisk-cloudant/changes
             inputs:
                 dbname: $CLOUDANT_DATABASE
