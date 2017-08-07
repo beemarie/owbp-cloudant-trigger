@@ -46,7 +46,7 @@ package:
             inputs:
                 dbname: $CLOUDANT_DATABASE
         message-received-trigger:
-          source: /whisk.system/messaging/messageHubFeed
+          source: openwhisk-messagehub/messageHubFeed
           inputs:
             kafka_brokers_sasl: $KAFKA_BROKERS
             user: $MESSAGEHUB_USER
