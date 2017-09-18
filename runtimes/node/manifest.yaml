@@ -22,7 +22,7 @@ package:
     dependencies:
         # binding cloudant package named openwhisk-cloudant
         openwhisk-cloudant:
-            location: /whisk.system/cloudant
+            location: /whisk.system/cloudant--
             inputs:
                 username: $CLOUDANT_USERNAME
                 password: $CLOUDANT_PASSWORD
